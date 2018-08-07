@@ -1,0 +1,44 @@
+:root {
+    --theme: #e225b7;
+    --themeDark: #ab1a8a;
+}
+
+body {
+    margin: 0px;
+    background: white;
+}
+
+header {
+    background: var(--theme);
+    color: white;
+    font-family: sans-serif;
+    padding:3px;
+    box-shadow: var(--themeDark) 0px 1px 4px;
+}
+
+main {
+    text-align: center;
+}
+
+#test {
+    font-size: calc(100vh - 130px);
+    line-height: 1.1;
+}
+
+#answer {
+    font-size: 16vh;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    background: var(--theme);
+    color: var(--theme);
+    border: none;
+    width: 2em;
+    border-top-left-radius: 24px;
+    text-align: center;
+    box-shadow: inset var(--themeDark) 2px 2px 4px;
+}
+
+#answer:focus {
+    color: #ffffff;
+}
