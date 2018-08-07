@@ -17,6 +17,7 @@ body {
     margin: 0px;
     background: var(--bg);
     color: var(--fg);
+    overflow: hidden;
 }
 
 /* page display */
@@ -33,6 +34,10 @@ body {
     height: 100vh;
 }
 
+.page .section {
+    z-index: 0;
+}
+
 /* page headers */
 header {
     background: var(--theme);
@@ -42,6 +47,7 @@ header {
     box-shadow: var(--themeDark) 0px 1px 4px;
     display: flex;
     flex-direction: row;
+    z-index: 2;
 }
 
 header h1 {
