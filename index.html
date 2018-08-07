@@ -4,22 +4,42 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>HiRandomGana</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
         <link rel="shortcut icon" href="favicon.png">
         <link rel="stylesheet" href="css/main.css">
         <link rel="manifest" href="manifest.json">
     </head>
     <body>
 
-        <main id="game" class="page visible">
+        <main id="game" class="gamepage page visible">
             <header>
                 <h1>HiRandomGana</h1>
                 <button class="showsettings"><div>⚙</div><span>Settings</span></button>
             </header>
 
             <section>
-                <span id="test">あ</span>
-                <input id="answer" type="text" value="A" readonly />
+                <span id="test" class="bigKana">あ</span>
+                <div>
+                    <input id="answer" type="text" value="A" readonly />
+                    <button class="next">🔄</button>
+                </div>
+            </section>
+        </main>
+
+        <main id="game2" class="gamepage page">
+            <header>
+                <h1>HiRandomGana</h1>
+                <button class="showsettings"><div>⚙</div><span>Settings</span></button>
+            </header>
+
+            <section>
+                <canvas></canvas>
+                <div>
+                    <button id="clear">🗑</button>
+                    <input id="prompt" type="text" value="A" readonly />
+                    <span id="target" class="bigKana">あ</span>
+                    <button class="next">🔄</button>
+                </div>
             </section>
         </main>
 
@@ -30,8 +50,15 @@
             </header>
 
             <section>
-                <input type="checkbox" id="dark" /><label for="dark">Dark Mode</label>
-                <p>Version 1.1.3 <a href="https://github.com/LonMcGregor/HiRandomGana">GitHub</a></p>
+                <input type="checkbox" id="dark" />
+                <label for="dark">Dark Mode</label>
+                <p></p>
+                <label for="whichGame">Pick which game to play:</label>
+                <select id="whichGame">
+                    <option value="read">Read</option>
+                    <option value="write">Write</option>
+                </select>
+                <p>Version 1.2.0 <a href="https://github.com/LonMcGregor/HiRandomGana">View on GitHub</a></p>
             </section>
         </section>
 

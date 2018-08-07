@@ -89,7 +89,6 @@ function nextRandom(){
         initBag();
     }
     let random = Math.floor(Math.random() * Math.floor(hiraganaBag.size)) % hiraganaBag.size;
-    console.log("Choice:" + random);
     const iter = hiraganaBag.entries();
     let next = '';
     while(random-- >= 0){
@@ -103,20 +102,33 @@ function randomHiragana(){
     const next = nextRandom();
     $("#test").innerText = String.fromCharCode(next[0]);
     $("#answer").value = next[1];
-    console.log("Current Choice:",next,"Current bag:", hiraganaBag);
+    $("#target").innerText = String.fromCharCode(next[0]);
+    $("#prompt").value = next[1];
+    clearCanvas();
 }
 
 function setDims(){
     if(window.innerWidth > window.innerHeight - 130){
-        $("#test").style.fontSize = (window.innerHeight - 130) + "px";
+        $a(".bigKana").forEach(kana => {
+            kana.style.fontSize = (window.innerHeight - 130) + "px";
+        });
     } else {
-        $("#test").style.fontSize = (window.innerWidth) + "px";
+        $a(".bigKana").forEach(kana => {
+            kana.style.fontSize = (window.innerWidth) + "px";
+        });
     }
+    $("canvas").width = window.innerWidth;
+    $("canvas").height = window.innerHeight;
+    clearCanvas();
 }
 
 function showSettings(){
+    if($("#settings.visible")){
+        gameChosen();
+    } else {
+        $(".visible").classList.toggle("visible");
+    }
     $("#settings").classList.toggle("visible");
-    $("#game").classList.toggle("visible");
 }
 
 function dark(){
@@ -124,18 +136,76 @@ function dark(){
     window.localStorage.setItem("dark", $("#dark").checked);
 }
 
+function gameSwitch(){
+    window.localStorage.setItem("whichGame", $("#whichGame").value);
+}
+
+function gameChosen(){
+    if($("#whichGame").value === "read"){
+        $("#game").classList.add("visible");
+        $("#game2").classList.remove("visible");
+    } else {
+        $("#game").classList.remove("visible");
+        $("#game2").classList.add("visible");
+    }
+    clearCanvas();
+}
+
 function loadSettings(){
     if(window.localStorage.getItem("dark") === "true"){
         $("#dark").checked = true;
         $("body").classList.add("dark");
     }
+    $("#whichGame").value = window.localStorage.getItem("whichGame");
+    gameChosen();
 }
 
-$("#test").addEventListener("click", randomHiragana);
+
+let drawing = false;
+function startDraw(){
+    drawing = true;
+}
+
+function endDraw(){
+    drawing = false;
+}
+
+function draw(e){
+    if(drawing){
+        const x = e.changedTouches ? e.changedTouches[0].screenX : e.offsetX;
+        const y = e.changedTouches ? e.changedTouches[0].screenY - 180 : e.offsetY;
+        const ctx = $("canvas").getContext("2d");
+        ctx.fillStyle = $(".dark") ? "#ffffff" : "#000000";
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI*2, true);
+        ctx.closePath();
+        ctx.fill();
+    }
+}
+
+function clearCanvas(){
+    $("canvas").getContext("2d").clearRect(0, 0, $("canvas").width, $("canvas").height);
+}
+
+$a(".next").forEach(btn => {
+    btn.addEventListener("click", randomHiragana)
+});
+
+$("#clear").addEventListener("click", clearCanvas);
+
 $a(".showsettings").forEach(button => {
     button.addEventListener("click", showSettings);
 });
 $("#dark").addEventListener("change", dark);
+$("#whichGame").addEventListener("change", gameSwitch);
 window.addEventListener('resize', setDims);
+
+$("canvas").addEventListener("mousedown", startDraw);
+$("canvas").addEventListener("mouseup", endDraw);
+$("canvas").addEventListener("mousemove", draw);
+$("canvas").addEventListener("touchstart", startDraw);
+$("canvas").addEventListener("touchend", endDraw);
+$("canvas").addEventListener("touchmove", draw);
+
 setDims();
 loadSettings();
