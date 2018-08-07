@@ -1,22 +1,73 @@
-:root {
+/*Main Body*/
+body {
     --theme: #e225b7;
     --themeDark: #ab1a8a;
+    --fg: black;
+    --bg: white;
+}
+
+body.dark {
+    --theme: #ab1a8a;
+    --themeDark: #e225b7;
+    --fg: white;
+    --bg: black;
 }
 
 body {
     margin: 0px;
-    background: white;
+    background: var(--bg);
+    color: var(--fg);
 }
 
+/* page display */
+.page {
+    display: none;
+}
+
+.page.visible {
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* page headers */
 header {
     background: var(--theme);
-    color: white;
+    color: var(--bg);
     font-family: sans-serif;
     padding:3px;
     box-shadow: var(--themeDark) 0px 1px 4px;
+    display: flex;
+    flex-direction: row;
 }
 
-main {
+header h1 {
+    width: calc(100vw - 110px);
+    height: 40px;
+    margin: 20px;
+}
+
+header button {
+    width: 100px;
+    height: 80px;
+    background: transparent;
+    border: none;
+    font-size: xx-large;
+    color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header button span {
+    font-size: small;
+}
+
+/* game */
+#game section {
     text-align: center;
 }
 
@@ -40,5 +91,16 @@ main {
 }
 
 #answer:focus {
-    color: #ffffff;
+    color: var(--fg);
+}
+
+/* settings */
+#settings section {
+    margin: 0 auto;
+    max-width: 200px;
+    padding: 20px;
+}
+
+#settings label {
+    font-size: large
 }

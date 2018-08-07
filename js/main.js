@@ -114,6 +114,28 @@ function setDims(){
     }
 }
 
-$("span").addEventListener("click", randomHiragana);
-window.addEventListener('resize', setDims) ;
+function showSettings(){
+    $("#settings").classList.toggle("visible");
+    $("#game").classList.toggle("visible");
+}
+
+function dark(){
+    $("body").classList.toggle("dark");
+    window.localStorage.setItem("dark", $("#dark").checked);
+}
+
+function loadSettings(){
+    if(window.localStorage.getItem("dark") === "true"){
+        $("#dark").checked = true;
+        $("body").classList.add("dark");
+    }
+}
+
+$("#test").addEventListener("click", randomHiragana);
+$a(".showsettings").forEach(button => {
+    button.addEventListener("click", showSettings);
+});
+$("#dark").addEventListener("change", dark);
+window.addEventListener('resize', setDims);
 setDims();
+loadSettings();

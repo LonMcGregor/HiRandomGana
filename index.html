@@ -11,14 +11,28 @@
     </head>
     <body>
 
-        <header>
-            <h1>HiRandomGana</h1>
-        </header>
+        <main id="game" class="page visible">
+            <header>
+                <h1>HiRandomGana</h1>
+                <button class="showsettings"><div>⚙</div><span>Settings</span></button>
+            </header>
 
-        <main>
-            <span id="test">あ</span>
-            <input id="answer" type="text" value="A" readonly></input>
+            <section>
+                <span id="test">あ</span>
+                <input id="answer" type="text" value="A" readonly />
+            </section>
         </main>
+
+        <section id="settings" class="page">
+            <header>
+                <h1>Settings</h1>
+                <button class="showsettings"><div>✔</div><span>Done</span></button>
+            </header>
+
+            <section>
+                <input type="checkbox" id="dark" /><label for="dark">Dark Mode</label>
+            </section>
+        </section>
 
         <script src="js/main.js"></script>
         <script src="js/install.js"></script>
