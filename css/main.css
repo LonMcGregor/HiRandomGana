@@ -96,7 +96,7 @@ header button span {
 }
 
 #answer:focus {
-    color: var(--fg);
+    color: var(--bg);
 }
 
 /* settings */
