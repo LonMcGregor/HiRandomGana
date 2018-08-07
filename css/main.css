@@ -47,7 +47,7 @@ header {
     box-shadow: var(--themeDark) 0px 1px 4px;
     display: flex;
     flex-direction: row;
-    z-index: 2;
+    z-index: 1;
 }
 
 header h1 {
@@ -79,7 +79,6 @@ header button span {
 
 #test {
     font-size: calc(100vh - 130px);
-    line-height: 1.1;
 }
 
 #answer {
