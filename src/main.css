@@ -15,25 +15,13 @@ body {
     margin: 0px;
     background: var(--bg);
     color: var(--fg);
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 /* page display */
-.page {
-    display: none;
-}
 
-.page.visible {
-    display: block;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-}
-
-.page .section {
-    z-index: 0;
+.page section {
+    height: -webkit-fill-available;
 }
 
 /* page headers */
@@ -77,7 +65,7 @@ header button span {
     top: 100px;
     left: 10px;
     line-height: 1.0;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .gamepage section div {

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './main.css';
-import App from './App';
+import ReadGame from './ReadGame';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<ReadGame />, document.getElementById('root'));
 registerServiceWorker();
