@@ -1,0 +1,10 @@
+#settings section {
+    text-align: center;
+    padding: 40px;
+}
+#settings section p {
+    margin: 40px;
+}
+#settings label, #settings select {
+    font-size: xx-large;
+}

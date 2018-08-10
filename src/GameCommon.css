@@ -1,0 +1,13 @@
+.page section {
+    height: -webkit-fill-available;
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.game {
+    height: fit-content;
+}

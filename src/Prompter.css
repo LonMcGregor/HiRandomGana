@@ -1,0 +1,21 @@
+.prompter {
+    font-size: 8vh;
+    background: var(--theme);
+    color: var(--bg);
+    border: none;
+    width: 2em;
+    min-height: 100%;
+    text-align: center;
+    border-top-right-radius: 24px;
+}
+
+
+.hiddenUntilFocus {
+    color: var(--theme);
+    box-shadow: inset var(--themeDark) -2px 2px 4px;
+    order: 0;
+}
+
+.hiddenUntilFocus:focus {
+    color: var(--bg);
+}
