@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import GameHeader from './GameHeader';
 import ResizingKana from './ResizingKana';
 import HiraganaBag from './KanaBag';
 import ShuffleButton from './ShuffleButton';
@@ -11,7 +10,10 @@ class ReadGame extends Component {
 
     constructor(props){
         super(props);
-        this.state = {bag: new HiraganaBag()};
+        this.state = {
+            bag: new HiraganaBag(),
+            rotate: "portrait"
+        };
     }
 
     nextRandom(){
@@ -19,10 +21,28 @@ class ReadGame extends Component {
         this.forceUpdate();
     }
 
+    componentWillMount() {
+        this.updateDimensions();
+    }
+
+    componentDidMount() {
+        window.addEventListener("resize", () => {this.updateDimensions();});
+    }
+
+    updateDimensions(){
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        if((w/h) > 0.9){
+            this.setState({rotate: "landscape"});
+        } else {
+            this.setState({rotate: "portrait"});
+        }
+    }
+
     render() {
+        const classRotate = "game " + this.state.rotate;
         return (
-            <div className="game">
-                <GameHeader title="Read Game" />
+            <div className={classRotate}>
                 <ResizingKana kana={this.state.bag.currentChar} />
                 <div className="controls">
                     <Prompter value={this.state.bag.currentPrompt} hiddenUntilFocus={true} />

@@ -1,59 +1,40 @@
 import React, { Component } from 'react';
-import './main.css';
+import './SettingsPage.css';
 
 class SettingsPage extends Component {
 
-    dark(){
-        $("body").classList.toggle("dark");
-        window.localStorage.setItem("dark", $("#dark").checked);
+    constructor(props){
+        super(props);
+        this.state = this.props.currentSettings;
+        this.dark = this.dark.bind(this);
+        this.gameSwitch = this.gameSwitch.bind(this);
     }
 
-    gameSwitch(){
-        window.localStorage.setItem("whichGame", $("#whichGame").value);
+    dark(event){
+        window.localStorage.setItem("isDark", event.target.checked);
+        this.props.settingsChange({isDark: event.target.checked});
     }
 
-    gameChosen(){
-        if($("#whichGame").value === "read"){
-            $("#game").classList.add("visible");
-            $("#game2").classList.remove("visible");
-        } else {
-            $("#game").classList.remove("visible");
-            $("#game2").classList.add("visible");
-        }
-        clearCanvas();
+    gameSwitch(event){
+        window.localStorage.setItem("game", event.target.value);
+        this.props.settingsChange({game: event.target.value});
     }
 
-    loadSettings(){
-        if(window.localStorage.getItem("dark") === "true"){
-            $("#dark").checked = true;
-            $("body").classList.add("dark");
-        }
-        $("#whichGame").value = window.localStorage.getItem("whichGame");
-        gameChosen();
-    }
-
-  render() {
-    return (
-        <section id="settings" class="page">
-            <header>
-                <h1>Settings</h1>
-                <button class="showsettings"><span role="img" aria-label="Close Settings">✔</span><span>Done</span></button>
-            </header>
-
-            <section>
-                <input type="checkbox" id="dark" />
-                <label for="dark">Dark Mode</label>
+    render() {
+        return (
+            <div id="settings">
+                <input type="checkbox" id="dark" onChange={this.dark} defaultChecked={this.state.isDark}/>
+                <label htmlFor="dark">Dark Mode</label>
                 <p></p>
-                <label for="whichGame">Pick which game to play:</label>
-                <select id="whichGame">
-                    <option value="read">Read</option>
-                    <option value="write">Write</option>
+                <label htmlFor="whichGame">Pick which game to play:</label>
+                <select id="whichGame" defaultValue={this.state.game} onChange={this.gameSwitch}>
+                    <option value="R">Read</option>
+                    <option value="W">Write</option>
                 </select>
-                <p>Version 1.2.0 <a href="https://github.com/LonMcGregor/HiRandomGana">View on GitHub</a></p>
-            </section>
-        </section>
-    );
-  }
+                <p>Version 2.0.0 <a href="https://github.com/LonMcGregor/HiRandomGana">View on GitHub</a></p>
+            </div>
+        );
+    }
 }
 
 export default SettingsPage;

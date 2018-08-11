@@ -1,13 +1,41 @@
-.page section {
-    height: -webkit-fill-available;
+.game {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-.controls {
+.game .controls {
+    flex: 1;
+}
+
+.game.portrait {
+    flex-direction: column;
+}
+
+.game.landscape {
+    flex-direction: row;
+}
+
+.portrait .controls {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.game {
-    height: fit-content;
+.landscape .controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.portrait .controls > * {
+    flex: 1;
+    font-size: 200%;
+    line-height: 1;
+}
+
+.landscape .controls > * {
+    flex: 1;
+    font-size: 10vh;
 }

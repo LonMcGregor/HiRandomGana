@@ -1,21 +1,25 @@
 .prompter {
-    font-size: 8vh;
-    background: var(--theme);
-    color: var(--bg);
+    background: var(--accent);
+    color: var(--textOnAccent);
     border: none;
-    width: 2em;
-    min-height: 100%;
     text-align: center;
-    border-top-right-radius: 24px;
 }
 
+.portrait .prompter {
+    max-width: 50%;
+    min-height: 100%;
+    box-shadow: inset var(--accentDark) -2px 2px 4px;
+}
+
+.landscape .prompter {
+    box-shadow: inset var(--accentDark) 2px 2px 4px;
+    width: 100%;
+}
 
 .hiddenUntilFocus {
-    color: var(--theme);
-    box-shadow: inset var(--themeDark) -2px 2px 4px;
-    order: 0;
+    color: var(--accent);
 }
 
 .hiddenUntilFocus:focus {
-    color: var(--bg);
+    color: var(--textOnAccent);
 }

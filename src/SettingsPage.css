@@ -1,8 +1,27 @@
-#settings section {
+#settings {
+    z-index: 1;
+    position: fixed;
+    right: 0px;
+    top: 0px;
     text-align: center;
+    height: 100vh;
     padding: 40px;
+    padding-top: 120px;
+    background: var(--background);
+    box-shadow: var(--accentDark) 0px 0px 4px;
+    animation: settingsFlyIn 0.5s linear;
 }
-#settings section p {
+
+@keyframes settingsFlyIn {
+    0% {
+        right: -1000px;
+    }
+    100% {
+        right: 0px;
+    }
+}
+
+#settings p {
     margin: 40px;
 }
 #settings label, #settings select {

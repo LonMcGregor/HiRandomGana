@@ -1,18 +1,31 @@
 /*Main Body*/
-body {
-    --theme: #e225b7;
-    --themeDark: #ab1a8a;
-    --fg: black;
-    --bg: white;
-}
-
-body.dark {
-    --fg: white;
-    --bg: black;
-}
-
-body {
+html, body, #root {
     margin: 0px;
-    background: var(--bg);
-    color: var(--fg);
+    padding: 0px;
+    height: 100%;
+}
+
+.light {
+    --accent: #e225b7;
+    --accentDark: #ab1a8a;
+    --textOnAccent: white;
+    --background: white;
+    --textOnBg: black;
+}
+
+.dark {
+    --accent: #7c1464;
+    --accentDark: black;
+    --textOnAccent: #e225b7;
+    --background: black;
+    --textOnBg: white;
+}
+
+.page {
+    background: var(--background);
+    color: var(--textOnBg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    max-height: 100%;
 }

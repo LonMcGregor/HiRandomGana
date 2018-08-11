@@ -1,3 +1,7 @@
-.bigKana {
+.bigKana span {
     line-height: 1;
+}
+
+.bigKana {
+    flex: 1;
 }
