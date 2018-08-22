@@ -15,11 +15,14 @@ class WriteGame extends Component {
             bag: new HiraganaBag(),
             rotate: "portrait",
             width: 300,
-            height: 300
+            height: 300,
+            showKana: false,
+            canvasKey: new Date().getTime()
         };
     }
 
     nextRandom(){
+        this.hideBigKana();
         this.state.bag.nextRandom();
         this.forceUpdate();
         this.clearCanvas();
@@ -41,23 +44,35 @@ class WriteGame extends Component {
             this.setState({
                 rotate: "landscape",
                 width: Math.floor(w*0.75),
-                height: Math.floor(h - headerHeight)
+                height: Math.floor(h - headerHeight),
+                canvasKey: new Date().getTime()
             });
         } else {
             this.setState({
                 rotate: "portrait",
                 width: w,
-                height: Math.floor(h - (headerHeight*2))
+                height: Math.floor(h - (headerHeight*2)),
+                canvasKey: new Date().getTime()
             });
         }
     }
 
     clearCanvas(){
-        const canvas = document.querySelector("canvas");
-        if(canvas){
-            const context = canvas.getContext('2d');
-            context.clearRect(0, 0, canvas.width, canvas.height);
-        }
+        this.setState({
+            canvasKey: new Date().getTime()
+        });
+    }
+
+    showBigKana(){
+        this.setState({
+            showKana: true
+        });
+    }
+
+    hideBigKana(){
+        this.setState({
+            showKana: false
+        });
     }
 
     render() {
@@ -68,11 +83,12 @@ class WriteGame extends Component {
                 width={this.state.width}
                 height={this.state.height}
                 initialColor={ink}
-                key={new Date().getTime()}
+                key={this.state.canvasKey}
                 />
-            <ResizingKana kana={this.state.bag.currentChar} isOverlay={true} isShown={true}/>
+            <ResizingKana kana={this.state.bag.currentChar} isOverlay={true} isShown={this.state.showKana}/>
             <div className="controls">
-                <button id="clear" class="controlButton" onClick={() => this.clearCanvas()}><span role="img" aria-label="Clear">🗑</span></button>
+                <button id="clear" className="controlButton" onClick={() => this.clearCanvas()}><span role="img" aria-label="Clear">🗑</span></button>
+                <button id="reveal" className="controlButton" onFocus={() => {this.showBigKana()}} onBlur={() => {this.hideBigKana()}} ><span role="img" aria-label="Reveal">🔦</span></button>
                 <Prompter value={this.state.bag.currentPrompt} hiddenUntilFocus={false} />
                 <ShuffleButton clicker={() => {this.nextRandom()}}/>
             </div>
