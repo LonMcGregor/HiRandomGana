@@ -32,7 +32,9 @@ class Index extends Component {
         switch(this.state.game){
             case "W":
                 headerText = "Write Game";
-                game = (<WriteGame />);
+                game = (<WriteGame
+                    drawInk={darkClass}
+                />);
                 break;
             case "R":
             default:

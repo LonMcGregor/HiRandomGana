@@ -1,18 +1,9 @@
-.prompter {
-    background: var(--accent);
-    color: var(--textOnAccent);
-    border: none;
-    text-align: center;
-}
-
 .portrait .prompter {
     max-width: 50%;
     min-height: 100%;
-    box-shadow: inset var(--accentDark) -2px 2px 4px;
 }
 
 .landscape .prompter {
-    box-shadow: inset var(--accentDark) 2px 2px 4px;
     width: 100%;
 }
 

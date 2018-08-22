@@ -19,8 +19,11 @@ class ResizingKana extends Component {
     }
 
     render() {
+        let classText = "bigKana";
+        classText += this.props.isOverlay ? " overlay" : "";
+        classText += this.props.isShown ? " visible" : "";
         return (
-            <div className="bigKana">
+            <div className={classText}>
                 <span id="target" style={this.state}>{this.props.kana}</span>
             </div>
         );

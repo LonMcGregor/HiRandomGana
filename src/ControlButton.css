@@ -1,0 +1,7 @@
+.controlButton {
+    background: var(--accent);
+    color: var(--textOnAccent);
+    border: none;
+    text-align: center;
+    box-shadow: inset var(--accentDark) 2px 2px 0px;
+}

@@ -5,3 +5,15 @@
 .bigKana {
     flex: 1;
 }
+
+.bigKana.overlay {
+    position: absolute;
+    -webkit-text-stroke: 5px var(--accent);
+    -webkit-text-fill-color: transparent;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.bigKana.overlay.visible {
+    visibility: visible;
+}
