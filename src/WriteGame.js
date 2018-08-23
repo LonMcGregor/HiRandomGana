@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import ReactPainter from 'react-painter';
-import ResizingKana from './ResizingKana';
-import HiraganaBag from './KanaBag';
-import ShuffleButton from './ShuffleButton';
-import Prompter from './Prompter';
-import './main.css';
-import './GameCommon.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ReactPainter from "react-painter";
+import ResizingKana from "./ResizingKana";
+import { HiraganaBag, KatakanaBag } from "./KanaBag";
+import ShuffleButton from "./ShuffleButton";
+import Prompter from "./Prompter";
+import "./main.css";
+import "./GameCommon.css";
 
 class WriteGame extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            bag: new HiraganaBag(),
+            bag: this.props.syllabary==="hiragana" ? new HiraganaBag() : new KatakanaBag(),
             rotate: "portrait",
             width: 300,
             height: 300,
@@ -77,23 +78,33 @@ class WriteGame extends Component {
 
     render() {
         const classRotate = "game " + this.state.rotate;
-        const ink = this.props.drawInk==="page dark" ? "white" : "black";
         return (<div className={classRotate}>
             <ReactPainter
                 width={this.state.width}
                 height={this.state.height}
-                initialColor={ink}
-                key={this.state.canvasKey}
-                />
+                initialColor={this.props.drawInk}
+                key={this.state.canvasKey+this.props.drawInk}
+            />
             <ResizingKana kana={this.state.bag.currentChar} isOverlay={true} isShown={this.state.showKana}/>
             <div className="controls">
                 <button id="clear" className="controlButton" onClick={() => this.clearCanvas()}><span role="img" aria-label="Clear">🗑</span></button>
-                <button id="reveal" className="controlButton" onFocus={() => {this.showBigKana()}} onBlur={() => {this.hideBigKana()}} ><span role="img" aria-label="Reveal">🔦</span></button>
+                <button id="reveal" className="controlButton" onFocus={() => {this.showBigKana();}} onBlur={() => {this.hideBigKana();}} ><span role="img" aria-label="Reveal">🔦</span></button>
                 <Prompter value={this.state.bag.currentPrompt} hiddenUntilFocus={false} />
-                <ShuffleButton clicker={() => {this.nextRandom()}}/>
+                <ShuffleButton clicker={() => {this.nextRandom();}}/>
             </div>
         </div>);
     }
 }
+WriteGame.propTypes = {
+    drawInk: function(props, propName, componentName) {
+        if (!/#[0-9a-fA-F]{6}/.test(props[propName])) {
+            return new Error(
+                "Invalid prop ''" + propName + "' supplied to" +
+                " ''" + componentName + "'. Hex color validation failed."
+            );
+        }
+    },
+    syllabary: PropTypes.oneOf(["hiragana", "katakana"]).isRequired
+};
 
 export default WriteGame;

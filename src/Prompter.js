@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import './ControlButton.css';
-import './Prompter.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./ControlButton.css";
+import "./Prompter.css";
 
 class Prompter extends Component {
     render(){
@@ -10,5 +11,13 @@ class Prompter extends Component {
         );
     }
 }
+Prompter.propTypes = {
+    hiddenUntilFocus: PropTypes.bool,
+    value: PropTypes.string.isRequired
+};
+Prompter.defaultProps = {
+    hiddenUntilFocus: false
+};
+
 
 export default Prompter;

@@ -21,7 +21,7 @@ class KanaBag {
         }
         let random = Math.floor(Math.random() * Math.floor(this.currentBag.size)) % this.currentBag.size;
         const iter = this.currentBag.entries();
-        let next = ['F','F'];
+        let next = ["F","F"];
         while(random-- >= 0){
             next = iter.next().value;
         }

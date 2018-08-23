@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./ResizingKana.css";
 
 class ResizingKana extends Component {
@@ -29,5 +30,14 @@ class ResizingKana extends Component {
         );
     }
 }
+ResizingKana.propTypes = {
+    isOverlay: PropTypes.bool,
+    isShown: PropTypes.bool,
+    kana: PropTypes.string.isRequired
+};
+ResizingKana.defaultProps = {
+    isOverlay: false,
+    isShown: true
+};
 
 export default ResizingKana;

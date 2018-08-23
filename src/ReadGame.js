@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import ResizingKana from './ResizingKana';
-import HiraganaBag from './KanaBag';
-import ShuffleButton from './ShuffleButton';
-import Prompter from './Prompter';
-import './main.css';
-import './GameCommon.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ResizingKana from "./ResizingKana";
+import ShuffleButton from "./ShuffleButton";
+import Prompter from "./Prompter";
+import "./main.css";
+import "./GameCommon.css";
+import { HiraganaBag, KatakanaBag } from "./KanaBag";
 
 class ReadGame extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            bag: new HiraganaBag(),
+            bag: this.props.syllabary==="hiragana" ? new HiraganaBag() : new KatakanaBag(),
             rotate: "portrait"
         };
     }
@@ -46,11 +47,14 @@ class ReadGame extends Component {
                 <ResizingKana kana={this.state.bag.currentChar} />
                 <div className="controls">
                     <Prompter value={this.state.bag.currentPrompt} hiddenUntilFocus={true} />
-                    <ShuffleButton clicker={() => {this.nextRandom()}}/>
+                    <ShuffleButton clicker={() => {this.nextRandom();}}/>
                 </div>
             </div>
         );
     }
 }
+ReadGame.propTypes = {
+    syllabary: PropTypes.oneOf(["hiragana", "katakana"]).isRequired
+};
 
 export default ReadGame;

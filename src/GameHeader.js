@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import './GameHeader.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./GameHeader.css";
 
 class GameHeader extends Component {
     render(){
@@ -17,5 +18,9 @@ class GameHeader extends Component {
         );
     }
 }
+GameHeader.propTypes = {
+    title: PropTypes.string.isRequired,
+    settingsSwitch: PropTypes.func.isRequired,
+};
 
 export default GameHeader;
