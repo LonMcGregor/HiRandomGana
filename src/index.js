@@ -13,7 +13,8 @@ class Index extends Component {
         this.state = {
             isDark: window.localStorage.getItem("isDark")==="true",
             game: window.localStorage.getItem("game"),
-            settingsActive: false
+            settingsActive: false,
+            bagType: "katakana"
         };
     }
 

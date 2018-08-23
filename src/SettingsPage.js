@@ -31,6 +31,12 @@ class SettingsPage extends Component {
                     <option value="R">Read</option>
                     <option value="W">Write</option>
                 </select>
+                <p></p>
+                <label htmlFor="whichSyllabary">Pick which syllabary to use:</label>
+                <select id="whichSyllabary" defaultValue={this.state.syllabary} onChange={this.gameSwitch}>
+                    <option value="R">Read</option>
+                    <option value="W">Write</option>
+                </select>
                 <p>Version 2.0.0 <a href="https://github.com/LonMcGregor/HiRandomGana">View on GitHub</a></p>
             </div>
         );
