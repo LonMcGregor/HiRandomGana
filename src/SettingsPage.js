@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./SettingsPage.css";
+import {AvailableBags, AvailableBagIds} from "./KanaBag";
 
 class SettingsPage extends Component {
 
@@ -40,8 +41,11 @@ class SettingsPage extends Component {
                 <p></p>
                 <label htmlFor="whichSyllabary">Pick which syllabary to use:</label>
                 <select id="whichSyllabary" defaultValue={this.state.syllabary} onChange={(e) => {this.settingChange(e, "syllabary");}}>
-                    <option value="hiragana">hiragana</option>
-                    <option value="katakana">katakana</option>
+                    <React.Fragment>
+                        {AvailableBags.map(bag => (
+                            <option key={bag.id} value={bag.id}>{bag.name}</option>
+                        ))}
+                    </React.Fragment>
                 </select>
                 <p>Version 2.0.0 <a href="https://github.com/LonMcGregor/HiRandomGana">View on GitHub</a></p>
             </div>
@@ -51,7 +55,7 @@ class SettingsPage extends Component {
 SettingsPage.propTypes = {
     isDark: PropTypes.bool.isRequired,
     game: PropTypes.oneOf(["R", "W"]).isRequired,
-    syllabary: PropTypes.oneOf(["hiragana", "katakana"]).isRequired,
+    syllabary: PropTypes.oneOf(AvailableBagIds).isRequired,
     settingsChange: PropTypes.func.isRequired
 };
 

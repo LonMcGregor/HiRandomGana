@@ -1,8 +1,10 @@
-import Hiragana from "./Hiragana";
-import Katakana from "./Katakana";
+import Hiragana, {HiraganaNoDakuten} from "./Hiragana";
+import Katakana, {KatakanaNoDakuten} from "./Katakana";
 
 const MasterHiraganaBag = new Map(Hiragana);
 const MasterKatakanaBag = new Map(Katakana);
+const MasterKatakanaNoDakutenBag = new Map(KatakanaNoDakuten);
+const MasterHiraganaNoDakutenBag = new Map(HiraganaNoDakuten);
 
 class KanaBag {
     constructor(bag) {
@@ -40,5 +42,43 @@ export class HiraganaBag extends KanaBag {
 export class KatakanaBag extends KanaBag {
     constructor(){
         super(MasterKatakanaBag);
+    }
+}
+
+export class KatakanaNoDakutenBag extends KanaBag {
+    constructor(){
+        super(MasterKatakanaNoDakutenBag);
+    }
+}
+
+export class HiraganaNoDakutenBag extends KanaBag {
+    constructor(){
+        super(MasterHiraganaNoDakutenBag);
+    }
+}
+
+export const AvailableBags = [
+    {id: "hiragana", name: "Hiragana"},
+    {id: "katakana", name: "Katakana"},
+    {id: "hiragana-nd", name: "Hiragana (No Dakuten)"},
+    {id: "katakana-nd", name: "Katakana (No Dakuten)"}
+];
+
+export const AvailableBagIds = AvailableBags.map(x => x.id);
+
+export class BagFactory {
+    makeBag(id){
+        switch(id){
+        case "hiragana":
+            return new HiraganaBag();
+        case "katakana":
+            return new KatakanaBag();
+        case "hiragana-nd":
+            return new KatakanaNoDakutenBag();
+        case "katakana-nd":
+            return new HiraganaNoDakutenBag();
+        default:
+            throw Error("Invalid bag id "+id);
+        }
     }
 }

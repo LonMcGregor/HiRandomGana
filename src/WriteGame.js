@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactPainter from "react-painter";
 import ResizingKana from "./ResizingKana";
-import { HiraganaBag, KatakanaBag } from "./KanaBag";
+import { BagFactory, AvailableBagIds } from "./KanaBag";
 import ShuffleButton from "./ShuffleButton";
 import Prompter from "./Prompter";
 import "./main.css";
@@ -13,7 +13,7 @@ class WriteGame extends Component {
     constructor(props){
         super(props);
         this.state = {
-            bag: this.props.syllabary==="hiragana" ? new HiraganaBag() : new KatakanaBag(),
+            bag: new BagFactory().makeBag(this.props.syllabary),
             rotate: "portrait",
             width: 300,
             height: 300,
@@ -104,7 +104,7 @@ WriteGame.propTypes = {
             );
         }
     },
-    syllabary: PropTypes.oneOf(["hiragana", "katakana"]).isRequired
+    syllabary: PropTypes.oneOf(AvailableBagIds).isRequired
 };
 
 export default WriteGame;

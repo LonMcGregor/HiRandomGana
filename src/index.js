@@ -6,6 +6,7 @@ import ReadGame from "./ReadGame";
 import WriteGame from "./WriteGame";
 import SettingsPage from "./SettingsPage";
 import registerServiceWorker from "./registerServiceWorker";
+import {AvailableBagIds} from "./KanaBag";
 
 class Index extends Component {
     constructor(props){
@@ -16,7 +17,7 @@ class Index extends Component {
         this.state = {
             isDark: storedDark==="true",
             game: storedGame ? storedGame : "R",
-            syllabary: storedSyllabary ? storedSyllabary : "hiragana",
+            syllabary: storedSyllabary ? storedSyllabary : AvailableBagIds[0],
             settingsActive: false
         };
     }

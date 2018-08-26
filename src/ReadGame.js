@@ -5,14 +5,14 @@ import ShuffleButton from "./ShuffleButton";
 import Prompter from "./Prompter";
 import "./main.css";
 import "./GameCommon.css";
-import { HiraganaBag, KatakanaBag } from "./KanaBag";
+import { BagFactory, AvailableBagIds } from "./KanaBag";
 
 class ReadGame extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            bag: this.props.syllabary==="hiragana" ? new HiraganaBag() : new KatakanaBag(),
+            bag: new BagFactory().makeBag(this.props.syllabary),
             rotate: "portrait"
         };
     }
@@ -54,7 +54,7 @@ class ReadGame extends Component {
     }
 }
 ReadGame.propTypes = {
-    syllabary: PropTypes.oneOf(["hiragana", "katakana"]).isRequired
+    syllabary: PropTypes.oneOf(AvailableBagIds).isRequired
 };
 
 export default ReadGame;
