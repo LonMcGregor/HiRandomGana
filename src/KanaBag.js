@@ -8,16 +8,16 @@ class KanaBag {
     constructor(bag) {
         this.fullBag = bag;
         this.reset();
+        this.cycleNextRandom();
     }
 
     reset(){
         this.currentBag = new Map(this.fullBag.entries());
-        this.nextRandom();
     }
 
-    nextRandom(){
+    cycleNextRandom(){
         if(this.currentBag.size === 0){
-            this.currentBag = new Map(HiraganaBag.entries()); /* todo make method */
+            this.reset();
         }
         let random = Math.floor(Math.random() * Math.floor(this.currentBag.size)) % this.currentBag.size;
         const iter = this.currentBag.entries();
@@ -28,7 +28,6 @@ class KanaBag {
         this.currentBag.delete(next[0]);
         this.currentChar = next[0];
         this.currentPrompt = next[1];
-        return next;
     }
 }
 

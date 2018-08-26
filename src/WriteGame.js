@@ -24,7 +24,7 @@ class WriteGame extends Component {
 
     nextRandom(){
         this.hideBigKana();
-        this.state.bag.nextRandom();
+        this.state.bag.cycleNextRandom();
         this.forceUpdate();
         this.clearCanvas();
     }

@@ -18,7 +18,7 @@ class ReadGame extends Component {
     }
 
     nextRandom(){
-        this.state.bag.nextRandom();
+        this.state.bag.cycleNextRandom();
         this.forceUpdate();
     }
 
