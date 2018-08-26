@@ -1,0 +1,39 @@
+progress.kanabag {
+    height: 10px;
+    border: none;
+    width: 500px;
+    -webkit-appearance: none;
+    background-color: var(--background);
+    position: absolute;
+    left: 0px;
+}
+
+.landscape progress.kanabag {
+    position: fixed;
+    top: 80px;
+    transform: rotate(90deg);
+    transform-origin: left;
+    width: calc(100vh - 80px);
+}
+
+.portrait progress.kanabag {
+    position: absolute;
+    left: 0px;
+    width: 100vw;
+}
+
+progress.kanabag::-webkit-progress-bar {
+    background-color: var(--background);
+}
+
+progress.kanabag::-ms-fill{
+    background-color: var(--accent);
+}
+
+progress.kanabag::-moz-progress-bar {
+    background-color: var(--accent);
+}
+
+progress.kanabag::-webkit-progress-value {
+    background-color: var(--accent);
+}

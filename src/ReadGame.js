@@ -6,6 +6,7 @@ import Prompter from "./Prompter";
 import "./main.css";
 import "./GameCommon.css";
 import { BagFactory, AvailableBagIds } from "./KanaBag";
+import KanaBagProgressBar from "./KanaBagProgressBar";
 
 class ReadGame extends Component {
 
@@ -44,6 +45,7 @@ class ReadGame extends Component {
         const classRotate = "game " + this.state.rotate;
         return (
             <div className={classRotate}>
+                <KanaBagProgressBar total={this.state.bag.total()} current={this.state.bag.done()} />
                 <ResizingKana kana={this.state.bag.currentChar} />
                 <div className="controls">
                     <Prompter value={this.state.bag.currentPrompt} hiddenUntilFocus={true} />

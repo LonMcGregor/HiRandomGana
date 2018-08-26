@@ -7,6 +7,7 @@ import ShuffleButton from "./ShuffleButton";
 import Prompter from "./Prompter";
 import "./main.css";
 import "./GameCommon.css";
+import KanaBagProgressBar from "./KanaBagProgressBar";
 
 class WriteGame extends Component {
 
@@ -79,6 +80,7 @@ class WriteGame extends Component {
     render() {
         const classRotate = "game " + this.state.rotate;
         return (<div className={classRotate}>
+            <KanaBagProgressBar total={this.state.bag.total()} current={this.state.bag.done()} />
             <ReactPainter
                 width={this.state.width}
                 height={this.state.height}

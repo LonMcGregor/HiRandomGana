@@ -13,6 +13,18 @@ class KanaBag {
         this.cycleNextRandom();
     }
 
+    total(){
+        return this.fullBag.size;
+    }
+
+    remaining(){
+        return this.currentBag.size;
+    }
+
+    done(){
+        return this.total() - this.remaining();
+    }
+
     reset(){
         this.currentBag = new Map(this.fullBag.entries());
     }
@@ -74,9 +86,9 @@ export class BagFactory {
         case "katakana":
             return new KatakanaBag();
         case "hiragana-nd":
-            return new KatakanaNoDakutenBag();
-        case "katakana-nd":
             return new HiraganaNoDakutenBag();
+        case "katakana-nd":
+            return new KatakanaNoDakutenBag();
         default:
             throw Error("Invalid bag id "+id);
         }
